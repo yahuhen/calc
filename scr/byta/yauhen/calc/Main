@@ -1,0 +1,24 @@
+package com.epam.byta.yauhen.calc;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		Pattern pattern = Pattern.compile("[0-9]+[*+-/][0-9]+");
+		System.out.print("Please type the expression to calculate: ");
+		try {
+			int result = Calculation.execute(scanner, pattern);
+			System.out.println("The result is: " + result);
+			scanner.close();
+		} catch (InputMismatchException e) {
+			System.out
+					.println("The expression is not correct!\nPlease, try it again.");
+		} catch (ArithmeticException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
